@@ -1,5 +1,6 @@
+// PRESS "S" to regenerate random rule
+// PRESS "R" to regenerate grid with random noise
 process.stdout.write('\x1Bc');
-process.stdout.write('press "s" to start, "q" to quit');
 
 const readline = require('readline');
 const rl = readline.createInterface ({
