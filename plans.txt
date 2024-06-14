@@ -1,5 +1,6 @@
-- Elementary Cellular Automata
-- Game of Life
-- Game of Life "extended" with alternative rules
+x Elementary Cellular Automata
+x Game of Life
+x Game of Life "extended" with alternative rules
+X Snake
 
 - Tetris
