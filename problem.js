@@ -1,3 +1,4 @@
+// UNFINISHED PROJECT
 const length = 20; // Temporary value; to be turned into random generation.
 
 const inquiryNumber = randomInteger();
