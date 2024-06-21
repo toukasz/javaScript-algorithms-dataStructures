@@ -5,3 +5,4 @@ X Snake
 
 - Tetris
 - Mandelbrot set
+- Google 'no internet' game
