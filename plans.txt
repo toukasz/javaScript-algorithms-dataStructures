@@ -4,3 +4,4 @@ x Game of Life "extended" with alternative rules
 X Snake
 
 - Tetris
+- Mandelbrot set
