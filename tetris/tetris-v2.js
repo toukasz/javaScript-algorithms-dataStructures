@@ -6,46 +6,47 @@ process.stdin.setRawMode(true);
 
 process.stdin.on('keypress', (str, key) =>
 {
-	if (key.name === 'q')
+	switch (key.name)
 	{
-		process.exit();
-	}
-	if (key.name === 'x')
-	{
-		rotateAnticlockwise();
-	}
-	if (key.name === 'c')
-	{
+		case 'up':
+		hardDrop();
+		break;
+
+		case 'down':
+		softDrop();
+		break;
+
+		case 'left':
+		left();
+		break;
+
+		case 'right':
+		right();
+		break;
+
+		case 'x':
+		hold();
+		break;
+
+		case 'v':
 		rotateClockwise();
-	}
-	if (key.name === 's')
-	{
-		start();
-	}
-	if (key.name === 'p')
-	{
-		end(timer);
-	}
-	else
-	{
-		switch (key.name)
-		{
-			case 'up':
-			hardDrop();
-			break;
+		break;
 
-			case 'down':
-			softDrop();
-			break;
+		case 'd':
+		rotateAnticlockwise();
+		break;
 
-			case 'left':
-			left();
-			break;
+		case 'p':
+		pause();
+		break;
 
-			case 'right':
-			right();
-			break;
-		}
+		case 'r':
+		reset();
+		break;
+
+		case 'q':
+		process.exit();
+		break;
 	}
 });
 
@@ -58,36 +59,41 @@ const width = 10;
 const totalHeight = height + 6;
 const totalWidth = width + 2;
 
-for (let indexHeight = 0; indexHeight < totalHeight; indexHeight++)
-{
-	array.push([]);
+generateArray();
 
-	for (let indexWidth = 0; indexWidth < totalWidth; indexWidth++)
+function generateArray()
+{
+	for (let indexHeight = 0; indexHeight < totalHeight; indexHeight++)
 	{
-		if (indexWidth === 0 && indexHeight === totalHeight - 1 ||
-			indexWidth === totalWidth - 1 && indexHeight === totalHeight - 1)
+		array.push([]);
+
+		for (let indexWidth = 0; indexWidth < totalWidth; indexWidth++)
 		{
-			array[indexHeight].push(6);
-		}
-		else if (indexWidth === 0)
-		{
-			array[indexHeight].push(2);
-		}
-		else if (indexWidth === totalWidth - 1)
-		{
-			array[indexHeight].push(3);
-		}
-		else if (indexHeight === totalHeight - 2)
-		{
-			array[indexHeight].push(4);
-		}
-		else if (indexHeight === totalHeight - 1)
-		{
-			array[indexHeight].push(5);
-		}
-		else
-		{
-			array[indexHeight].push(0);
+			if (indexWidth === 0 && indexHeight === totalHeight - 1 ||
+				indexWidth === totalWidth - 1 && indexHeight === totalHeight - 1)
+			{
+				array[indexHeight].push(6);
+			}
+			else if (indexWidth === 0)
+			{
+				array[indexHeight].push(2);
+			}
+			else if (indexWidth === totalWidth - 1)
+			{
+				array[indexHeight].push(3);
+			}
+			else if (indexHeight === totalHeight - 2)
+			{
+				array[indexHeight].push(4);
+			}
+			else if (indexHeight === totalHeight - 1)
+			{
+				array[indexHeight].push(5);
+			}
+			else
+			{
+				array[indexHeight].push(0);
+			}
 		}
 	}
 }
@@ -101,7 +107,30 @@ function print(array)
 
 	for (let indexHeight = 4; indexHeight < array.length; indexHeight++)
 	{
-		arrayDisplay += '\n\t\t\t';
+		if (indexHeight === 5)
+		{
+			arrayDisplay += '\n\tHOLD:\t\t';
+		}
+		else if (indexHeight === 6)
+		{
+			arrayDisplay += '\n\t' + printPreview(0, blockHold) + '\t';
+		}
+		else if (indexHeight === 7)
+		{
+			arrayDisplay += '\n\t' + printPreview(1, blockHold) + '\t';
+		}
+		else if (indexHeight === 8)
+		{
+			arrayDisplay += '\n\t' + printPreview(2, blockHold) + '\t';
+		}
+		else if (indexHeight === 9)
+		{
+			arrayDisplay += '\n\t' + printPreview(3, blockHold) + '\t';
+		}
+		else
+		{
+			arrayDisplay += '\n\t\t\t';
+		}
 
 		for (let indexWidth = 0; indexWidth < array[indexHeight].length; indexWidth++)
 		{
@@ -110,51 +139,53 @@ function print(array)
 
 		if (indexHeight === 5)
 		{
-			arrayDisplay += '\tTOP:';
+			arrayDisplay += '\tNEXT:\t\t';
 		}
 		if (indexHeight === 6)
 		{
-			let linesString = '0'.repeat(6 - lines.toString().length);
-			linesString += lines.toString();
-			arrayDisplay += '\t' + linesString;
+			arrayDisplay += '\t' + printPreview(0, next) + '\t';
+		}
+		if (indexHeight === 7)
+		{
+			arrayDisplay += '\t' + printPreview(1, next) + '\t';
 		}
 		if (indexHeight === 8)
 		{
-			arrayDisplay += '\tSCORE:';
+			arrayDisplay += '\t' + printPreview(2, next) + '\t';
 		}
 		if (indexHeight === 9)
+		{
+			arrayDisplay += '\t' + printPreview(3, next) + '\t';
+		}
+		if (indexHeight === 12)
+		{
+			arrayDisplay += '\tSCORE:';
+		}
+		if (indexHeight === 13)
 		{
 			let scoreString = '0'.repeat(6 - score.toString().length);
 			scoreString += score.toString();
 			arrayDisplay += '\t' + scoreString;
 		}
-		if (indexHeight === 13)
+		if (indexHeight === 15)
 		{
 			arrayDisplay += '\tLINES:';
 		}
-		if (indexHeight === 14)
+		if (indexHeight === 16)
 		{
 			let linesString = '0'.repeat(3 - lines.toString().length);
 			linesString += lines.toString();
 			arrayDisplay += '\t' + linesString;
 		}
-		if (indexHeight === 16)
+		if (indexHeight === 18)
 		{
 			arrayDisplay += '\tLEVEL:';
 		}
-		if (indexHeight === 17)
+		if (indexHeight === 19)
 		{
 			let levelString = '0'.repeat(2 - level.toString().length);
 			levelString += level.toString();
 			arrayDisplay += '\t' + levelString;
-		}
-		if (indexHeight === 19)
-		{
-			arrayDisplay += '\tNEXT:';
-		}
-		if (indexHeight === 20)
-		{
-			arrayDisplay += '\t' + blockTypeList[next].toString();
 		}
 	}
 
@@ -162,18 +193,146 @@ function print(array)
 	process.stdout.write(arrayDisplay);
 }
 
+function printPreview(indexHeight, blockType)
+{
+	if (indexHeight === 0)
+	{
+		switch (blockType)
+		{
+			case 0:	// T
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 1:	// I
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 2:	// O
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 3:	// J
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 4:	// L
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 5:	// S
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 6:	// Z
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			default:
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+		}
+	}
+	if (indexHeight === 1)
+	{
+		switch (blockType)
+		{
+			case 0:	// T
+			return ascii[0] + ascii[1] + ascii[1] + ascii[1];
+			break;
+			case 1:	// I
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 2:	// O
+			return ascii[0] + ascii[1] + ascii[1] + ascii[0];
+			break;
+			case 3:	// J
+			return ascii[1] + ascii[1] + ascii[1] + ascii[0];
+			break;
+			case 4:	// L
+			return ascii[0] + ascii[1] + ascii[1] + ascii[1];
+			break;
+			case 5:	// S
+			return ascii[0] + ascii[0] + ascii[1] + ascii[1];
+			break;
+			case 6:	// Z
+			return ascii[1] + ascii[1] + ascii[0] + ascii[0];
+			break;
+			default:
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+		}
+	}
+	if (indexHeight === 2)
+	{
+		switch (blockType)
+		{
+			case 0:	// T
+			return ascii[0] + ascii[0] + ascii[1] + ascii[0];
+			break;
+			case 1:	// I
+			return ascii[1] + ascii[1] + ascii[1] + ascii[1];
+			break;
+			case 2:	// O
+			return ascii[0] + ascii[1] + ascii[1] + ascii[0];
+			break;
+			case 3:	// J
+			return ascii[0] + ascii[0] + ascii[1] + ascii[0];
+			break;
+			case 4:	// L
+			return ascii[0] + ascii[1] + ascii[0] + ascii[0];
+			break;
+			case 5:	// S
+			return ascii[0] + ascii[1] + ascii[1] + ascii[0];
+			break;
+			case 6:	// Z
+			return ascii[0] + ascii[1] + ascii[1] + ascii[0];
+			break;
+			default:
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+		}
+	}
+	if (indexHeight === 3)
+	{
+		switch (blockType)
+		{
+			case 0:	// T
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 1:	// I
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 2:	// O
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 3:	// J
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 4:	// L
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 5:	// S
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			case 6:	// Z
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+			default:
+			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
+			break;
+		}
+	}
+}
 
-const blockTypeList = ['T', 'I', 'O', 'J', 'L', 'S', 'Z'];
+
+const blockTypeList = ['T', 'I', 'O', 'J', 'L', 'S', 'Z', ' '];
 let blockType = randomBlockType();
 
 function randomBlockType()
 {
-	return Math.floor(Math.random() * blockTypeList.length);
+	return Math.floor(Math.random() * 7);
 }
 
-let y_pos = 2;
-let x_pos = 6;
-let rotation = 0;
+const y_pos_start = 2;
+const x_pos_start = 6;
+const rotation_start = 0;
+
+let y_pos = y_pos_start;
+let x_pos = x_pos_start;
+let rotation = rotation_start;
 
 
 function block(type, height, width, rotation, write)
@@ -509,7 +668,12 @@ function right()
 
 function softDrop()
 {
-	if (blockCollision(blockTypeList[blockType], y_pos + 1, x_pos, rotation) === 0)
+	if (blockCollision(blockTypeList[blockType], y_pos + 1, x_pos, rotation) !== 0 &&
+		y_pos === 2)
+	{
+		end();
+	}
+	else if (blockCollision(blockTypeList[blockType], y_pos + 1, x_pos, rotation) === 0)
 	{
 		y_pos++;
 	}
@@ -517,10 +681,12 @@ function softDrop()
 	{
 		block(blockTypeList[blockType], y_pos, x_pos, rotation, 1);
 
-		y_pos = 2;
-		x_pos = 6;
+		y_pos = y_pos_start;
+		x_pos = x_pos_start;
+		rotation = rotation_start;
 		blockType = next;
 		next = randomBlockType();
+		blockHoldCount = 0;
 
 		score += 1;
 	}
@@ -536,10 +702,12 @@ function hardDrop()
 	{
 		block(blockTypeList[blockType], y_pos, x_pos, rotation, 1);
 
-		y_pos = 2;
-		x_pos = 6;
+		y_pos = y_pos_start;
+		x_pos = x_pos_start;
+		rotation = rotation_start;
 		blockType = next;
 		next = randomBlockType();
+		blockHoldCount = 0;
 
 		score += 1;
 	}
@@ -566,6 +734,33 @@ function rotateAnticlockwise()
 	else if (rotation !== 0 && blockCollision(blockTypeList[blockType], y_pos, x_pos, rotation - 1) === 0)
 	{
 		rotation--;
+	}
+}
+
+let blockHold = 7;
+let blockHoldCount = 0;
+
+function hold()
+{
+	if (blockHold === 7)
+	{
+		blockHold = blockType;
+
+		y_pos = 2;
+		x_pos = 6;
+		rotation = 0;
+		blockType = next;
+		next = randomBlockType();
+	}
+	else if (blockHoldCount < 2)
+	{
+		[blockHold, blockType] = [blockType, blockHold];
+
+		y_pos = 2;
+		x_pos = 6;
+		rotation = 0;
+
+		blockHoldCount++;
 	}
 }
 
@@ -610,16 +805,12 @@ function clearLineCheck()
 			lines++;
 			levelCount++;
 
-			if (Math.random() > 0.5 && levelCount >= 10)
+			if (Math.random() > 0.5 && levelCount >= 8 && level <= 20)
 			{
+				stepRate = stepRates[level];
+				stepCount = 0;
 				level++;
 				levelCount = 0;
-
-				if (stepRate > 1)
-				{
-					stepCount = 0;
-					stepRate -= 1;
-				}
 			}
 
 			return;
@@ -631,21 +822,64 @@ function clearLineCheck()
 }
 
 
-var timer = setInterval(tick, 50);
+const intervalPeriod = 20;
+var timer = setInterval(tick, intervalPeriod);
 
-function start()
+let pauseState = false;
+
+function pause()
 {
-	timer = setInterval(tick, 50);
+	if (pauseState === false)
+	{
+		pauseState = true;
+		clearInterval(timer);
+		return;
+	}
+	if (pauseState === true)
+	{
+		pauseState = false;
+		timer = setInterval(tick, intervalPeriod);
+		return;
+	}
 }
 
-function end(timer)
+function reset()
+{
+	clearInterval(timer);
+	timer = setInterval(tick, intervalPeriod);
+	pauseState = false;
+
+	array = [];
+	generateArray();
+
+	y_pos = y_pos_start;
+	x_pos = x_pos_start;
+	rotation = rotation_start;
+
+	blockHold = 7;
+	blockHoldCount = 0;
+
+	score = 0;
+	scoreCount = 0;
+	lines = 0;
+	level = 1;
+	levelCount = 0;
+	next = randomBlockType();
+
+	stepCount = 0;
+	stepRate = stepRates[0];
+}
+
+function end()
 {
 	clearInterval(timer);
 }
 
 
 let stepCount = 0;
-let stepRate = 10;
+
+const stepRates = [100, 80, 60, 50, 40, 30, 20, 15, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+let stepRate = stepRates[0];
 
 function step()
 {
