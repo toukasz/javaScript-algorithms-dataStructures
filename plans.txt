@@ -2,7 +2,7 @@ x Elementary Cellular Automata
 x Game of Life
 x Game of Life "extended" with alternative rules
 X Snake
+x Tetris
 
-- Tetris
 - Mandelbrot set
-- Google 'no internet' game
+- Basic "vim-like" text-editor
