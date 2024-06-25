@@ -6,3 +6,5 @@ x Tetris
 
 - Mandelbrot set
 - Basic "vim-like" text-editor
+
+- Possibly rewriting things in C?
