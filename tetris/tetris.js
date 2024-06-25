@@ -101,35 +101,37 @@ function generateArray()
 
 const ascii = [" .", "[]", "<!", "!>", "==", "\\/", "  "];
 
-function print(array)
+function print()
 {
 	let arrayDisplay = '\x1Bc';
 
 	for (let indexHeight = 4; indexHeight < array.length; indexHeight++)
 	{
-		if (indexHeight === 5)
+		switch (indexHeight)
 		{
+			case 5:
 			arrayDisplay += '\n\tHOLD:\t\t';
-		}
-		else if (indexHeight === 6)
-		{
+			break;
+
+			case 6:
 			arrayDisplay += '\n\t' + printPreview(0, blockHold) + '\t';
-		}
-		else if (indexHeight === 7)
-		{
+			break;
+
+			case 7:
 			arrayDisplay += '\n\t' + printPreview(1, blockHold) + '\t';
-		}
-		else if (indexHeight === 8)
-		{
+			break;
+
+			case 8:
 			arrayDisplay += '\n\t' + printPreview(2, blockHold) + '\t';
-		}
-		else if (indexHeight === 9)
-		{
+			break;
+
+			case 9:
 			arrayDisplay += '\n\t' + printPreview(3, blockHold) + '\t';
-		}
-		else
-		{
+			break;
+
+			default:
 			arrayDisplay += '\n\t\t\t';
+			break;
 		}
 
 		for (let indexWidth = 0; indexWidth < array[indexHeight].length; indexWidth++)
@@ -137,55 +139,57 @@ function print(array)
 			arrayDisplay += ascii[array[indexHeight][indexWidth]];
 		}
 
-		if (indexHeight === 5)
+		switch (indexHeight)
 		{
+			case 5:
 			arrayDisplay += '\tNEXT:\t\t';
-		}
-		if (indexHeight === 6)
-		{
+			break;
+
+			case 6:
 			arrayDisplay += '\t' + printPreview(0, next) + '\t';
-		}
-		if (indexHeight === 7)
-		{
+			break;
+
+			case 7:
 			arrayDisplay += '\t' + printPreview(1, next) + '\t';
-		}
-		if (indexHeight === 8)
-		{
+			break;
+
+			case 8:
 			arrayDisplay += '\t' + printPreview(2, next) + '\t';
-		}
-		if (indexHeight === 9)
-		{
+			break;
+
+			case 9:
 			arrayDisplay += '\t' + printPreview(3, next) + '\t';
-		}
-		if (indexHeight === 12)
-		{
+			break;
+
+			case 12:
 			arrayDisplay += '\tSCORE:';
-		}
-		if (indexHeight === 13)
-		{
+			break;
+
+			case 13:
 			let scoreString = '0'.repeat(6 - score.toString().length);
 			scoreString += score.toString();
 			arrayDisplay += '\t' + scoreString;
-		}
-		if (indexHeight === 15)
-		{
+			break;
+
+			case 15:
 			arrayDisplay += '\tLINES:';
-		}
-		if (indexHeight === 16)
-		{
+			break;
+
+			case 16:
 			let linesString = '0'.repeat(3 - lines.toString().length);
 			linesString += lines.toString();
 			arrayDisplay += '\t' + linesString;
-		}
-		if (indexHeight === 18)
-		{
+			break;
+
+			case 18:
 			arrayDisplay += '\tLEVEL:';
-		}
-		if (indexHeight === 19)
-		{
+			break;
+
+			case 19:
 			let levelString = '0'.repeat(2 - level.toString().length);
 			levelString += level.toString();
 			arrayDisplay += '\t' + levelString;
+			break;
 		}
 	}
 
@@ -195,8 +199,9 @@ function print(array)
 
 function printPreview(indexHeight, blockType)
 {
-	if (indexHeight === 0)
+	switch (indexHeight)
 	{
+		case 0:
 		switch (blockType)
 		{
 			case 0:	// T
@@ -224,9 +229,9 @@ function printPreview(indexHeight, blockType)
 			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
 			break;
 		}
-	}
-	if (indexHeight === 1)
-	{
+		break;
+
+		case 1:
 		switch (blockType)
 		{
 			case 0:	// T
@@ -254,9 +259,9 @@ function printPreview(indexHeight, blockType)
 			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
 			break;
 		}
-	}
-	if (indexHeight === 2)
-	{
+		break;
+
+		case 2:
 		switch (blockType)
 		{
 			case 0:	// T
@@ -284,9 +289,9 @@ function printPreview(indexHeight, blockType)
 			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
 			break;
 		}
-	}
-	if (indexHeight === 3)
-	{
+		break;
+
+		case 3:
 		switch (blockType)
 		{
 			case 0:	// T
@@ -314,6 +319,7 @@ function printPreview(indexHeight, blockType)
 			return ascii[0] + ascii[0] + ascii[0] + ascii[0];
 			break;
 		}
+		break;
 	}
 }
 
@@ -668,8 +674,7 @@ function right()
 
 function softDrop()
 {
-	if (blockCollision(blockTypeList[blockType], y_pos + 1, x_pos, rotation) !== 0 &&
-		y_pos === 2)
+	if (blockCollision(blockTypeList[blockType], y_pos + 1, x_pos, rotation) !== 0 && y_pos === 2)
 	{
 		end();
 	}
@@ -899,6 +904,6 @@ function tick()
 	clearLineCheck();
 
 	block(blockTypeList[blockType], y_pos, x_pos, rotation, 1);
-	print(array);
+	print();
 	block(blockTypeList[blockType], y_pos, x_pos, rotation, 0);
 }
