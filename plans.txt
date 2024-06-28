@@ -3,8 +3,8 @@ x Game of Life
 x Game of Life "extended" with alternative rules
 X Snake
 x Tetris
+x Mandelbrot set
 
-- Mandelbrot set
 - Basic "vim-like" text-editor
-
 - Possibly rewriting things in C?
+- Simulate a computer virtually
