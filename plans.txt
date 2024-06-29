@@ -8,3 +8,4 @@ x Mandelbrot set
 - Basic "vim-like" text-editor
 - Possibly rewriting things in C?
 - Simulate a computer virtually
+- MineSweeper
