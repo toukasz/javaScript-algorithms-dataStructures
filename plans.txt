@@ -9,3 +9,4 @@ x Mandelbrot set
 - Possibly rewriting things in C?
 - Simulate a computer virtually
 - MineSweeper
+- 3D doom-like renderer
