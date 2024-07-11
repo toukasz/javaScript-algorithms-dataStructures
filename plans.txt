@@ -10,3 +10,4 @@ x Mandelbrot set
 - Simulate a computer virtually
 - MineSweeper
 - 3D doom-like renderer
+- Faro (card game)
