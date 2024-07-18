@@ -11,3 +11,4 @@ x Mandelbrot set
 - MineSweeper
 - 3D doom-like renderer
 - Faro (card game)
+- Browser-based trading card simulator game
