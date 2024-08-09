@@ -12,3 +12,4 @@ x Mandelbrot set
 - 3D doom-like renderer
 - Faro (card game)
 - Browser-based trading card simulator game
+- Web-based Forth interpreter / postfix calculator
