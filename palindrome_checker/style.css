@@ -1,0 +1,27 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  background-color: white;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+  padding: 0 20px;
+  text-align: justify;
+}
+
+legend {
+  color: white;
+  font-weight: bold;
+  background-color: black;
+  padding: 3px 6px;
+}
+
+input {
+  font-size: 15px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+button {
+  font-size: 15px;
+  cursor: pointer;
+}
