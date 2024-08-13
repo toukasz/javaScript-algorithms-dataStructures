@@ -1,0 +1,22 @@
+body {
+  font-size: 17px;
+  background-color: #eeeeee;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+  padding: 0 20px;
+  text-align: justify;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+fieldset {
+  box-sizing: border-box;
+}
+
+input {
+  font-family: monospace;
+  font-size: 17px;
+  width: calc(100% - 6.375px);
+}
