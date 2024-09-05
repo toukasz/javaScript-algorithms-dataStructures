@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Hello, world!</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="" />
+	<style>
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		background-color: #d0ffd0;
+		max-width: 800px;
+		margin: 0 auto 0 auto;
+		padding: 0 20px;
+	}
+	body, input, button {
+		font-size: 17px;
+	}
+	</style>
+</head>
+<body>
+	<h1>Roman Numberal Converter</h1>
+
+	<main>
+	<input id="number" type="number" min="1" max="3999" />
+	<button id="convert-btn">Transform</button>
+	<br />
+	<span id="output">Hello</span>
+	</main>
+
+	<script>
+	const input = document.querySelector("#number");
+	const button = document.querySelector("#convert-btn");
+	const output = document.querySelector("#output");
+
+	button.addEventListener("click", function () {
+		const roman_output = [];
+		const findChar = () => {
+			if (count - 1000 >= 0) { roman_output.push('M'); return count -= 1000; };
+			if (count - 900 >= 0) { roman_output.push('CM'); return count -= 900; };
+			if (count - 500 >= 0) { roman_output.push('D'); return count -= 500; };
+			if (count - 400 >= 0) { roman_output.push('CD'); return count -= 400; };
+			if (count - 100 >= 0) { roman_output.push('C'); return count -= 100; };
+			if (count - 90 >= 0) { roman_output.push('XC'); return count -= 90; };
+			if (count - 50 >= 0) { roman_output.push('L'); return count -= 50; };
+			if (count - 40 >= 0) { roman_output.push('XL'); return count -= 40; };
+			if (count - 10 >= 0) { roman_output.push('X'); return count -= 10; };
+			if (count - 9 >= 0) { roman_output.push('IX'); return count -= 9; };
+			if (count - 5 >= 0) { roman_output.push('V'); return count -= 5; };
+			if (count - 4 >= 0) { roman_output.push('IV'); return count -= 4; };
+			if (count - 1 >= 0) { roman_output.push('I'); return count -= 1; };
+		};
+
+		const input_value = parseInt(input.value);
+		if (isNaN(input_value)) return output.innerText = "Please enter a valid number";
+		if (input_value < 1) return output.innerText = "Please enter a number greater than or equal to 1";
+		if (input_value > 3999) return output.innerText = "Please enter a number less than or equal to 3999";
+
+		let count = input_value;
+		while (count > 0) { findChar() };
+		output.innerText = roman_output.join('');
+
+	});
+	</script>
+</body>
+</html>
