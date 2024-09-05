@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Telephone Number Validator</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<style>
+	body {
+		font-size: 17px;
+		font-family: Arial, Helvetica, sans-serif;
+		color: #5C4033;
+		background-color: #F8DE7E;
+		max-width: 800px;
+		margin: 0 auto 0 auto;
+		padding: 0 20px;
+	}
+	fieldset, input, button {
+		font-size: 17px;
+		border: 1px solid #5C4033;
+		color: #5C4033;
+	}
+	</style>
+</head>
+<body>
+	<h1>Telephone Number Validator</h1>
+	<fieldset>
+	<legend>Enter value</legend>
+	<input id="user-input" />
+	<button id="check-btn">check</button>
+	<button id="clear-btn">clear</button>
+	<p id="results-div"></p>
+	</fieldset>
+
+	<script>
+	const input = document.querySelector('#user-input');
+	const check = document.querySelector('#check-btn');
+	const clear = document.querySelector('#clear-btn');
+	const output = document.querySelector('#results-div');
+
+	clear.addEventListener('click', () => { input.value = ''; output.innerText = ''; });
+
+	check.addEventListener('click', () => {
+		const valid = () => { output.innerText = `Valid US number: ${string}` };
+		const string = input.value;
+		if (string === '') return alert('Please provide a phone number');
+		if (/^1{0,1} {0,1}\([0-9]{3}\) {0,1}[0-9]{3}-[0-9]{4}$/.test(string))	return valid();
+		if (/^(1 ){0,1}[0-9]{3} [0-9]{3} [0-9]{4}$/.test(string))		return valid();
+		if (/^1{0,1} {0,1}[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(string))		return valid();
+		if (/^1{0,1}[0-9]{3}[0-9]{3}[0-9]{4}$/.test(string))			return valid();
+		return output.innerText = `Invalid US number: ${string}`;
+	});
+	</script>
+</body>
+</html>
