@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Cash Register</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<style>
+	body {
+		font-size: 17px;
+		font-family: Arial, Helvetica, sans-serif;
+		color: #00304E;
+		background-color: #ADD8E6;
+		max-width: 800px;
+		margin: 0 auto 0 auto;
+		padding: 0 20px;
+	}
+	fieldset, input, button {
+		font-size: 17px;
+		border: 1px solid #00304E;
+		color: #00304E;
+	}
+	table {
+		border-collapse: collapse;
+		margin: 0 17px 17px 17px;
+	}
+	table td, table th {
+		border: 1px solid #00304E;
+		padding: 2px 17px;
+	}
+	</style>
+</head>
+<body>
+	<h1>Cash Register</h1>
+	<fieldset>
+	<legend id="total"></legend>
+	<table id="cid"></table>
+	<input id="cash" />
+	<button id="purchase-btn">Purchase</button>
+	<p id="change-due"></p>
+	</fieldset>
+	<script src="script.js"></script>
+</body>
+</html>
