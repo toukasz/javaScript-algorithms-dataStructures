@@ -4,6 +4,7 @@ x Game of Life "extended" with alternative rules
 X Snake
 x Tetris
 x Mandelbrot set
+x Web-based Forth interpreter / postfix calculator
 
 - Basic "vim-like" text-editor
 - Possibly rewriting things in C?
@@ -12,4 +13,3 @@ x Mandelbrot set
 - 3D doom-like renderer
 - Faro (card game)
 - Browser-based trading card simulator game
-- Web-based Forth interpreter / postfix calculator
