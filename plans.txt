@@ -7,9 +7,8 @@ x Mandelbrot set
 x Web-based Forth interpreter / postfix calculator
 
 - Basic "vim-like" text-editor
-- Possibly rewriting things in C?
 - Simulate a computer virtually
 - MineSweeper
 - 3D doom-like renderer
 - Faro (card game)
-- Browser-based trading card simulator game
+- Commodore-like ForthScript emulator
