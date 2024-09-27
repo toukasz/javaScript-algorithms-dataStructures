@@ -6,9 +6,9 @@ x Tetris
 x Mandelbrot set
 x Web-based Forth interpreter / postfix calculator
 
+- Commodore-like ForthScript emulator
 - Basic "vim-like" text-editor
 - Simulate a computer virtually
 - MineSweeper
 - 3D doom-like renderer
 - Faro (card game)
-- Commodore-like ForthScript emulator
