@@ -6,6 +6,7 @@ x Tetris
 x Mandelbrot set
 x Web-based Forth interpreter / postfix calculator
 
+- Web extended game of life
 - Commodore-like ForthScript emulator
 - Basic "vim-like" text-editor
 - Simulate a computer virtually
