@@ -5,9 +5,9 @@ X Snake
 x Tetris
 x Mandelbrot set
 x Web-based Forth interpreter / postfix calculator
+x Commodore-like ForthScript emulator
 
 - Web extended game of life
-- Commodore-like ForthScript emulator
 - Basic "vim-like" text-editor
 - Simulate a computer virtually
 - MineSweeper
